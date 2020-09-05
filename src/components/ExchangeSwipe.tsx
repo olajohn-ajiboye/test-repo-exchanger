@@ -2,7 +2,7 @@ import React from 'react'
 import styled from 'styled-components'
 
 const Wrapper = styled.div`
-    height: 50px;
+    height: 150px;
     background-image: linear-gradient(to bottom, white, white 50%, transparent 50%);
     display: flex;
     align-items: center;
@@ -14,8 +14,8 @@ const Wrapper = styled.div`
 const SwipeButton = styled.button`
     height: 50px;
     width: 50px;
-    background-color: rgb(0, 117, 235);
-    border: 2px solid rgb(0, 117, 235);
+    background-color: #1890ff;
+    border: 2px solid #1890ff;
     color: white;
     border-radius: 50%;
     cursor: pointer;
@@ -28,9 +28,9 @@ const SwipeButton = styled.button`
 
 const Price = styled.span`
     background-color: white;
-    color: rgb(0, 117, 235);
-    border: 2px solid rgb(0, 117, 235);
-    font-size: 24px;
+    border: 1px solid rgb(0, 117, 235);
+    font-weight: 700;
+    font-size: 20px;
     height: 40px;
     line-height: 40px;
     padding-left: 12px;

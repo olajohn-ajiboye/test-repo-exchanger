@@ -12,7 +12,7 @@ const HeaderWrapper = styled.div`
 `
 
 const Title = styled.span`
-    font-weight: 400;
+    font-weight: 900;
     font-size: 24px;
     padding-left: 24px;
 `

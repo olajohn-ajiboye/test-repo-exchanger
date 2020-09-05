@@ -13,14 +13,6 @@ export const AppWrapper = styled.div`
     flex-direction: row;
 `
 
-export const WidgetWrapper = styled.div`
-    width: 400px;
-    height: 500px;
-    background-color: rgb(240, 240, 240);
-    border: 1px solid rgb(240, 240, 240);
-    border-radius: 12px;
-`
-
 export const PocketWrapper = styled.div<PocketWrapperProps>`
     height: 80px;
     display: flex;

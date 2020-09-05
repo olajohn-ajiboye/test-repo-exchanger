@@ -1,8 +1,10 @@
 const FX_BASE_URL = 'https://api.exchangeratesapi.io/latest?'
 
-interface CurrencyPair {
-    source: string
-    target: string
+export type Currency = 'GBP' | 'EUR' | 'USD'
+
+export interface CurrencyPair {
+    source: Currency
+    target: Currency
 }
 
 export const fetchCurrencyPairPrices = async ({ source, target }: CurrencyPair): Promise<Record<string, number>> => {

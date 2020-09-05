@@ -1,5 +1,0 @@
-export { default as ExchangeSwipe } from './ExchangeSwipe'
-export { default as priceSlice } from './priceSlice'
-export { default as exchangeSlice } from './exchangeSlice'
-export { default as PocketLine } from './PocketLine'
-export { default as PocketSelector } from './PocketSelector'

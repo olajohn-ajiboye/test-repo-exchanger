@@ -1,7 +1,7 @@
 import React from 'react'
 import PocketSelector from './PocketSelector'
 
-import { PocketWrapper, Input } from '../components/Styled'
+import { PocketWrapper, Input } from './Styled'
 
 const SourcePocket = () => {
     return (

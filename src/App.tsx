@@ -1,8 +1,12 @@
 import React from 'react'
 import { createGlobalStyle } from 'styled-components'
+import { Provider } from 'react-redux'
+import reducers from './reducers'
+import { createStore } from 'redux'
+import { AppWrapper } from './components/Styled'
 import Exchange from './widgets/Exchange'
 
-import { AppWrapper } from './components/Styled'
+const store = createStore(reducers)
 
 const GlobalStyles = createGlobalStyle`
   html {
@@ -24,10 +28,12 @@ const GlobalStyles = createGlobalStyle`
 const App = () => {
     return (
         <>
-            <GlobalStyles />
-            <AppWrapper>
-                <Exchange />
-            </AppWrapper>
+            <Provider store={store}>
+                <GlobalStyles />
+                <AppWrapper>
+                    <Exchange />
+                </AppWrapper>
+            </Provider>
         </>
     )
 }
