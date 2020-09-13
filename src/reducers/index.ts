@@ -2,8 +2,13 @@ import { combineReducers } from 'redux'
 
 import prices from '../reducers/prices'
 import exchange from '../reducers/exchange'
+import pockets from '../reducers/pockets'
 
-export default combineReducers({
+const rootReducer = combineReducers({
     prices,
     exchange,
+    pockets,
 })
+
+export default rootReducer
+export type RootState = ReturnType<typeof rootReducer>

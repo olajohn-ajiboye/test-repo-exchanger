@@ -13,16 +13,6 @@ export const AppWrapper = styled.div`
     flex-direction: row;
 `
 
-export const PocketWrapper = styled.div<PocketWrapperProps>`
-    height: 80px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 12px;
-    background-color: ${props => props.background};
-`
-
 export const Input = styled.input`
     height: 50px;
     width: 150px;
@@ -35,4 +25,22 @@ export const Input = styled.input`
     &:focus {
         outline: 0;
     }
+`
+export const PocketWrapper = styled.div<PocketWrapperProps>`
+    height: 80px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px;
+    background-color: ${props => props.background};
+`
+
+export const WidgetWrapper = styled.div`
+    width: 400px;
+    height: 600px;
+    margin: 3rem;
+    background-color: rgb(240, 240, 240);
+    border: 1px solid rgb(240, 240, 240);
+    border-radius: 12px;
 `

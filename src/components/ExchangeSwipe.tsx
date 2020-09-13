@@ -1,5 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
+import actions from '../actions'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
+import { RootState } from '../reducers'
 
 const Wrapper = styled.div`
     height: 150px;
@@ -43,11 +46,23 @@ interface ExchangeSwipeProps {
     price: number
     swipeCurrencies: Function
 }
-const ExchangeSwipe = ({ price = 0, swipeCurrencies }: ExchangeSwipeProps) => (
-    <Wrapper>
-        <SwipeButton onClick={() => swipeCurrencies}>&#8645;</SwipeButton>
-        <Price>{price.toFixed(6)}</Price>
-    </Wrapper>
-)
+const ExchangeSwipe = () => {
+    const dispatch = useDispatch()
+    const { price } = useSelector(({ exchange: { currencyPair }, prices }: RootState) => {
+        return {
+            price: prices[`${currencyPair.source}/${currencyPair.target}`],
+        }
+    }, shallowEqual)
+    const swipeCurrencies = () => {
+        dispatch(actions.exchange.swipeCurrencies())
+    }
+
+    return (
+        <Wrapper>
+            <SwipeButton onClick={swipeCurrencies}>&#8645;</SwipeButton>
+            <Price>{price.toFixed(3)}</Price>
+        </Wrapper>
+    )
+}
 
 export default ExchangeSwipe

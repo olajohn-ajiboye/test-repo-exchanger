@@ -9,7 +9,7 @@ export enum POCKET_ACTION_TYPES {
 type Currency = 'EUR' | 'GBP' | 'USD'
 
 const addPocket = (currency: Currency) => {
-    return{
+    return {
         type: POCKET_ACTION_TYPES.ADD_POCKET,
         currency,
     }

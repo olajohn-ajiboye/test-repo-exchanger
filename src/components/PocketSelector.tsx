@@ -1,8 +1,13 @@
 import React from 'react'
 import styled from 'styled-components'
+import { useSelector, shallowEqual } from 'react-redux'
+
+import { RootState } from '../reducers'
+import { Currency } from '../services/priceApi'
+import {Side } from '../types'
 
 interface BalanceProps {
-    readonly warning: string
+    readonly warning: boolean
 }
 
 const Wrapper = styled.div`
@@ -26,13 +31,38 @@ const Select = styled.select`
     margin: 10px;
 `
 
-const PocketSelector = () => (
-    <Wrapper>
-        <Select value={'10000'}>
-            <option key={'NGN'}>{'NGN'}</option>
-        </Select>
-        <Balance warning={''}>Balance: 1000</Balance>
-    </Wrapper>
-)
+
+interface PocketProps {
+    side: Side
+    onChange: (value: Currency) => any
+}
+const PocketSelector = ({ side, onChange }: PocketProps) => {
+    const { pockets, warning, value, ignoredValue } = useSelector(
+        ({ exchange: { sourceAmount, currencyPair }, pockets }: RootState) => {
+            return {
+                pockets,
+                value: currencyPair[side],
+                warning: side === 'source' && sourceAmount > pockets[currencyPair.source].amount,
+                ignoredValue: currencyPair[side === 'source' ? 'target' : 'source'],
+            }
+        },
+        shallowEqual
+    )
+
+    return (
+        <Wrapper>
+            <Select onChange={({ target }) => onChange(target.value as Currency)} value={value}>
+                {Object.keys(pockets)
+                    .filter(currency => currency !== ignoredValue)
+                    .map(currency => (
+                        <option key={currency}>{currency}</option>
+                    ))}
+            </Select>
+            <Balance warning={warning}>
+                Balance: {pockets[value].amount.toFixed(2)} {value}
+            </Balance>
+        </Wrapper>
+    )
+}
 
 export default PocketSelector

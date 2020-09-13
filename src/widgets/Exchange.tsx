@@ -1,31 +1,56 @@
-import React from 'react'
-import styled from 'styled-components'
-import { useDispatch } from 'react-redux'
+import React, { useEffect } from 'react'
+import { useDispatch, useSelector, shallowEqual } from 'react-redux'
 
-import { ExchangeButton, ExchangeSwipe, PocketLine } from '../components'
-import Header from '../components/Header'
+import { ExchangeButton, ExchangeSwipe, PocketLine} from '../components'
+import {WidgetWrapper} from '../components/Styled'
+
 import actions from '../actions'
+import Header from '../components/Header'
+import { CurrencyPair, fetchCurrencyPairPrices } from '../services/priceApi'
+import { RootState } from '../reducers'
+import {Side} from '../types'
 
-export const WidgetWrapper = styled.div`
-    width: 400px;
-    height: 600px;
-    margin: 3rem;
-    background-color: rgb(240, 240, 240);
-    border: 1px solid rgb(240, 240, 240);
-    border-radius: 12px;
-`
+
+
+
+
+const PRICES_UPDATE_INTERVAL = 20 * 1000
 
 const ExchangeWidget = () => {
     const dispatch = useDispatch()
-    dispatch(actions.prices.updateCurrencyPrice('USD/GBP', '0.7777'))
-    dispatch(actions.exchange.updateCurrencyPair('source', 'GBP'))
-    dispatch(actions.pockets.addPocket('GBP'))
+
+    const { currencyPair } = useSelector(
+        ({exchange: {currencyPair}}: RootState) => ({
+            currencyPair
+        }),
+        shallowEqual
+    )
+
+    useEffect(() => {
+        
+        const updatePrice = (pair: string, price: string) => {
+            dispatch(actions.prices.updateCurrencyPrice(pair, price))
+        }
+
+        const updatePrices = async (currencyPair: CurrencyPair) => {
+            const updates = await fetchCurrencyPairPrices(currencyPair)
+            Object.keys(updates).map(pair => updatePrice(pair, updates[pair]))
+        }
+
+        updatePrices(currencyPair)
+        const priceFetchInterval = setInterval(() => updatePrices(currencyPair), PRICES_UPDATE_INTERVAL)
+
+        return () => {
+            clearInterval(priceFetchInterval)
+        }
+    }, [currencyPair, dispatch])
+    
     return (
         <WidgetWrapper>
             <Header />
-            <PocketLine />
-            <ExchangeSwipe price={1000} swipeCurrencies={() => {}} />
-            <PocketLine />
+            <PocketLine side={Side.source} />
+            <ExchangeSwipe />
+            <PocketLine side={Side.target} />
             <ExchangeButton />
         </WidgetWrapper>
     )

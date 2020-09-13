@@ -14,17 +14,20 @@ const updateCurrencyPair = (side: Side, currency: Currency) => ({
     currency,
 })
 
-const setCurrencyPair = (source: Currency, target: Currency) => ({
-    type: EXCHANGE_ACTION_TYPES.SET_CURRENCY_PAIR,
-    source,
-    target,
-})
+const setCurrencyPair = (source: Currency, target: Currency) => {
+    console.log(source, target)
+    return {
+        type: EXCHANGE_ACTION_TYPES.SET_CURRENCY_PAIR,
+        source,
+        target,
+    }
+}
 
 const swipeCurrencies = () => ({
     type: EXCHANGE_ACTION_TYPES.SWIPE_CURRENCIES,
 })
 
-const updateAmount = (side: Side, price: string, amount: string) => ({
+const updateAmount = (side: Side, price?: string, amount?: string) => ({
     type: EXCHANGE_ACTION_TYPES.UPDATE_AMOUNT,
     side,
     price: price ? parseFloat(price) : 0,

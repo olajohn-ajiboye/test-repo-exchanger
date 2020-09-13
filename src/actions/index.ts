@@ -5,5 +5,5 @@ import pockets from './pocket'
 export default {
     prices,
     exchange,
-    pockets 
+    pockets,
 }

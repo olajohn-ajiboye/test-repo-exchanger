@@ -7,10 +7,11 @@ export interface CurrencyPair {
     target: Currency
 }
 
-export const fetchCurrencyPairPrices = async ({ source, target }: CurrencyPair): Promise<Record<string, number>> => {
+export const fetchCurrencyPairPrices = async ({ source, target }: CurrencyPair): Promise<Record<string, string>> => {
     try {
         const sourceTargetPrice = await fetch(`${FX_BASE_URL}symbols=${target}&base=${source}`).then(res => res.json())
         const targetSourcePrice = await fetch(`${FX_BASE_URL}symbols=${source}&base=${target}`).then(res => res.json())
+        console.log(sourceTargetPrice)
         return {
             [`${source}/${target}`]: sourceTargetPrice.rates[target],
             [`${target}/${source}`]: targetSourcePrice.rates[source],

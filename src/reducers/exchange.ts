@@ -7,9 +7,12 @@ interface InitialState {
 }
 
 const initialState: InitialState = {
-    currencyPair: {},
-    sourceAmount: '',
-    targetAmount: '',
+    currencyPair: {
+        source: 'EUR',
+        target: 'GBP',
+    },
+    sourceAmount: '1.023',
+    targetAmount: '1.100',
 }
 
 const round = (amount: number) => Math.floor(amount * 100) / 100

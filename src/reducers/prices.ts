@@ -1,13 +1,11 @@
 import { PRICES_TYPES } from '../actions/prices'
 
 interface InitialState {
-    pair: string
-    price: number
+    [key: string]: number
 }
 
 const initialState: InitialState = {
-    pair: 'EUR/USD',
-    price: 0.01,
+    'GBP/USD': 1.2827893689,
 }
 export default (state = initialState, action: any) => {
     switch (action.type) {
