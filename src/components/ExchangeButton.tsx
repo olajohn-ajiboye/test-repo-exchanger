@@ -1,8 +1,11 @@
 import React from 'react'
 import styled from 'styled-components'
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
+
 import actions from '../actions'
 import { RootState } from '../reducers'
+
+
 
 const Button = styled.button`
     width: calc(100% - 200px);
@@ -13,11 +16,12 @@ const Button = styled.button`
     color: white;
     font-size: 24px;
     cursor: pointer;
-    opacity: 0.5
+
     
     &:disabled {
-        background-color: rgba(235, 0, 141, 0.5);
-        cursor: inherit;
+        cursor: none;
+        opacity: 0.3;
+
     }
 `
 
@@ -26,11 +30,11 @@ const ExchangeButton = () => {
 
     const { source, target, amount, price, disabled } = useSelector(
         ({ exchange, prices, pockets }: RootState) => ({
-            source: exchange.currencyPair.source,
+            source: exchange.currencyPair.source, 
             target: exchange.currencyPair.target,
-            amount: exchange.sourceAmount as string,
+            amount: exchange.sourceAmount,
             price: prices[`${exchange.currencyPair.source}/${exchange.currencyPair.target}`],
-            disabled: !exchange.sourceAmount || exchange.sourceAmount > pockets[exchange.currencyPair.source].amount,
+            disabled: !exchange.sourceAmount || parseFloat(exchange.sourceAmount) > pockets[exchange.currencyPair.source].amount ,
         }),
         shallowEqual
     )
@@ -43,7 +47,9 @@ const ExchangeButton = () => {
     }
 
     return (
-        <Button disabled={disabled} onClick={() => handleOnClick}>
+        <Button   
+        disabled={disabled}
+        onClick={handleOnClick}>
             {' '}
             Exchange
         </Button>

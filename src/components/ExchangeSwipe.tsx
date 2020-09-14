@@ -42,17 +42,15 @@ const Price = styled.span`
     min-width: 60px;
 `
 
-interface ExchangeSwipeProps {
-    price: number
-    swipeCurrencies: Function
-}
+
 const ExchangeSwipe = () => {
     const dispatch = useDispatch()
     const { price } = useSelector(({ exchange: { currencyPair }, prices }: RootState) => {
         return {
             price: prices[`${currencyPair.source}/${currencyPair.target}`],
         }
-    }, shallowEqual)
+    },shallowEqual)
+    
     const swipeCurrencies = () => {
         dispatch(actions.exchange.swipeCurrencies())
     }
@@ -60,7 +58,7 @@ const ExchangeSwipe = () => {
     return (
         <Wrapper>
             <SwipeButton onClick={swipeCurrencies}>&#8645;</SwipeButton>
-            <Price>{price.toFixed(3)}</Price>
+            <Price>{price}</Price>
         </Wrapper>
     )
 }

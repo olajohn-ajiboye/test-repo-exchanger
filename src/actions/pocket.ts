@@ -1,12 +1,8 @@
-export enum POCKET_ACTION_TYPES {
-    ADD_POCKET = 'pockets/add',
-    REMOVE_POCKET = 'pockets/remove',
-    TOPUP_POCKET = 'pockets/topup',
-    WITHDRAW_POCKET = 'pockets/withdraw',
-    EXCHANGE = 'pockets/exchange',
-}
+import {Currency} from '../types'
+import {  POCKET_ACTION_TYPES} from './action-types'
 
-type Currency = 'EUR' | 'GBP' | 'USD'
+
+
 
 const addPocket = (currency: Currency) => {
     return {
@@ -24,7 +20,7 @@ const removePocket = (currency: Currency) => ({
 const topup = (currency: Currency, amount: string) => ({
     type: POCKET_ACTION_TYPES.TOPUP_POCKET,
     currency,
-    amount: parseFloat(amount),
+    amount: parseFloat(amount) ,
 })
 
 const withdraw = (currency: Currency, amount: string) => ({
@@ -33,12 +29,12 @@ const withdraw = (currency: Currency, amount: string) => ({
     amount: parseFloat(amount),
 })
 
-const exchange = (source: Currency, target: Currency, amount: string, price: string) => ({
+const exchange = (source: Currency, target: Currency, amount: string, price: number) => ({
     type: POCKET_ACTION_TYPES.EXCHANGE,
     source,
     target,
     amount: parseFloat(amount),
-    price: parseFloat(price),
+    price: parseFloat(price.toFixed(6)),
 })
 
 export default {

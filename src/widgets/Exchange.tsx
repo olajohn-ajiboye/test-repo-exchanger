@@ -8,7 +8,7 @@ import actions from '../actions'
 import Header from '../components/Header'
 import { CurrencyPair, fetchCurrencyPairPrices } from '../services/priceApi'
 import { RootState } from '../reducers'
-import {Side} from '../types'
+
 
 
 
@@ -27,7 +27,7 @@ const ExchangeWidget = () => {
     )
 
     useEffect(() => {
-        
+
         const updatePrice = (pair: string, price: string) => {
             dispatch(actions.prices.updateCurrencyPrice(pair, price))
         }
@@ -48,9 +48,9 @@ const ExchangeWidget = () => {
     return (
         <WidgetWrapper>
             <Header />
-            <PocketLine side={Side.source} />
+            <PocketLine side="source" />
             <ExchangeSwipe />
-            <PocketLine side={Side.target} />
+            <PocketLine side="target" />
             <ExchangeButton />
         </WidgetWrapper>
     )

@@ -1,6 +1,11 @@
 
+export type Currency = 'EUR' | 'USD' | 'GBP'
 
-export enum Side {
-    source = 'source',
-    target = 'target'
+export interface CurrencyPair {
+    source: string
+    target: string
+}
+
+export interface CurrencyRatesPair {
+    [key: string]: number
 }

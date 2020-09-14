@@ -1,23 +1,21 @@
-import { EXCHANGE_ACTION_TYPES } from '../actions/exchange'
+import { EXCHANGE_ACTION_TYPES, ExchangeActions} from '../actions/action-types'
 
-interface InitialState {
-    currencyPair: any
-    sourceAmount: number | string
-    targetAmount: number | string
-}
 
-const initialState: InitialState = {
+
+
+
+const initialState = {
     currencyPair: {
         source: 'EUR',
         target: 'GBP',
     },
-    sourceAmount: '1.023',
-    targetAmount: '1.100',
+    sourceAmount: '',
+    targetAmount:'',
 }
 
 const round = (amount: number) => Math.floor(amount * 100) / 100
 
-export default (state = initialState, action: any) => {
+export default (state = initialState, action: ExchangeActions) => {
     switch (action.type) {
         case EXCHANGE_ACTION_TYPES.SET_CURRENCY_PAIR: {
             const { source, target } = action
@@ -44,7 +42,7 @@ export default (state = initialState, action: any) => {
 
             const currencyPair = {
                 [side]: currency,
-                [unchangedSide]: state.currencyPair.unchangedSide,
+                [unchangedSide]: state.currencyPair[unchangedSide]
             }
 
             const shouldResetState =

@@ -4,7 +4,7 @@ import { useSelector, shallowEqual } from 'react-redux'
 
 import { RootState } from '../reducers'
 import { Currency } from '../services/priceApi'
-import {Side } from '../types'
+
 
 interface BalanceProps {
     readonly warning: boolean
@@ -33,8 +33,8 @@ const Select = styled.select`
 
 
 interface PocketProps {
-    side: Side
-    onChange: (value: Currency) => any
+    side: string
+    onChange: (value: Currency) => void
 }
 const PocketSelector = ({ side, onChange }: PocketProps) => {
     const { pockets, warning, value, ignoredValue } = useSelector(
@@ -42,7 +42,7 @@ const PocketSelector = ({ side, onChange }: PocketProps) => {
             return {
                 pockets,
                 value: currencyPair[side],
-                warning: side === 'source' && sourceAmount > pockets[currencyPair.source].amount,
+                warning: side === 'source' && parseFloat(sourceAmount) > pockets[currencyPair.source].amount,
                 ignoredValue: currencyPair[side === 'source' ? 'target' : 'source'],
             }
         },

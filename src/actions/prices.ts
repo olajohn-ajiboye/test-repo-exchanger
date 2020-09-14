@@ -1,10 +1,9 @@
-export enum PRICES_TYPES {
-    UPDATE_CURRENCY = 'exchange/prices/update',
-}
+import {PRICES_ACTION_TYPES} from './action-types'
 
-const updateCurrencyPrice = (pair: any, price: any) => {
+
+const updateCurrencyPrice = (pair: string, price: string) => {
     return {
-        type: PRICES_TYPES.UPDATE_CURRENCY,
+        type: PRICES_ACTION_TYPES.UPDATE_CURRENCY,
         pair,
         price: parseFloat(price),
     }

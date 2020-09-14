@@ -1,12 +1,16 @@
-import { POCKET_ACTION_TYPES } from '../actions/pocket'
 
-const initialState: any = {
-    EUR: { amount: 300 },
-    GBP: { amount: 500 },
-    USD: { amount: 400 },
+import { POCKET_ACTION_TYPES, PocketActions} from '../actions/action-types'
+
+interface InitialPocketState {
+    [key: string] : {amount: number}
+}
+const initialState: InitialPocketState  = {
+    'EUR': { amount: 300 },
+    'GBP': { amount: 500 },
+    'USD': { amount: 400 },
 }
 
-export default (state = initialState, action: any) => {
+export default (state = initialState, action: PocketActions) => {
     switch (action.type) {
         case POCKET_ACTION_TYPES.ADD_POCKET: {
             const { currency } = action
@@ -78,7 +82,7 @@ export default (state = initialState, action: any) => {
             }
 
             if (amount > state[currency].amount) {
-                console.warn(`Not enought money in ${currency} pocket`)
+                console.warn(`Not enough money in ${currency} pocket`)
                 return state
             }
 
@@ -114,7 +118,7 @@ export default (state = initialState, action: any) => {
                 return state
             }
 
-            if (amount > state[source]) {
+            if (amount > state[source].amount) {
                 console.warn(`Not enought money in ${source} pocket`)
                 return state
             }
