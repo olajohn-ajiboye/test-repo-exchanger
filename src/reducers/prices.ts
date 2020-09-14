@@ -5,7 +5,7 @@ interface InitialState {
     [key: string]: number
 }
 
-const initialState: InitialState = {
+export const initialState: InitialState = {
     'GBP/USD': 1.2827893689,
 }
 export default (state = initialState, action: PriceActions) => {

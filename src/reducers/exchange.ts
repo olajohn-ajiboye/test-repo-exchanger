@@ -8,7 +8,7 @@ interface initialExchangeState {
     targetAmount: string
 }
 
-const initialState: initialExchangeState = {
+export const initialState: initialExchangeState = {
     currencyPair: {
         source: 'EUR',
         target: 'GBP',

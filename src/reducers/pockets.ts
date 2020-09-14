@@ -4,7 +4,7 @@ import { POCKET_ACTION_TYPES, PocketActions} from '../actions/action-types'
 interface InitialPocketState {
     [key: string] : {amount: number}
 }
-const initialState: InitialPocketState  = {
+export const initialState: InitialPocketState  = {
     'EUR': { amount: 300 },
     'GBP': { amount: 500 },
     'USD': { amount: 400 },
