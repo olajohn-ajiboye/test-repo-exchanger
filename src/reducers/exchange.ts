@@ -2,9 +2,13 @@ import { EXCHANGE_ACTION_TYPES, ExchangeActions} from '../actions/action-types'
 
 
 
+interface initialExchangeState {
+    currencyPair: any
+    sourceAmount: string
+    targetAmount: string
+}
 
-
-const initialState = {
+const initialState: initialExchangeState = {
     currencyPair: {
         source: 'EUR',
         target: 'GBP',
