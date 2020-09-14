@@ -14,7 +14,7 @@ import { RootState } from '../reducers'
 
 
 
-const PRICES_UPDATE_INTERVAL = 20 * 1000
+const PRICES_UPDATE_INTERVAL = 10 * 1000
 
 const ExchangeWidget = () => {
     const dispatch = useDispatch()
