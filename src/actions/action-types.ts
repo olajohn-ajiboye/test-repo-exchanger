@@ -1,4 +1,4 @@
-import {Currency} from '../types'
+import {Currency, Side} from '../types'
 
 // EXCHANGE
 export enum EXCHANGE_ACTION_TYPES {
@@ -10,14 +10,14 @@ export enum EXCHANGE_ACTION_TYPES {
 
 export interface UpdateCurrencyPair {
     type: typeof EXCHANGE_ACTION_TYPES.UPDATE_CURRENCY_PAIR,
-    side: string
+    side: Side
     currency: Currency
 }
 
 export interface SetCurrencyPair {
     type: typeof EXCHANGE_ACTION_TYPES.SET_CURRENCY_PAIR,
-    source: string
-    target: string
+    source: Side
+    target: Side
 }
 
 export interface SwipeCurrencies {
@@ -26,7 +26,7 @@ export interface SwipeCurrencies {
 
 export interface  UpdateAmount {
     type: typeof EXCHANGE_ACTION_TYPES.UPDATE_AMOUNT,
-    side: string
+    side: Side
     price: number
     amount: number
 }

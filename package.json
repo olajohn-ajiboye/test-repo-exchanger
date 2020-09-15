@@ -24,7 +24,7 @@
         "start": "react-scripts start",
         "build": "react-scripts build",
         "pretty": "prettier --write \"**/*.{ts,js,tsx,json,yml,md}\"",
-        "test": "react-scripts test",
+        "test": "react-scripts test a",
         "eject": "react-scripts eject"
     },
     "eslintConfig": {

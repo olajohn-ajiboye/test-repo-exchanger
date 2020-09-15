@@ -27,7 +27,6 @@ This app is based on create-react-app:
 * Switch currencies and pockets
 
 ## Improvement
-* Withdrawals not fully implemented
 * Loading states
 * Better error handling and prevention of over draft - Currently exchange button is disabled and amount is shown in red
 * Better data structure for handling prices states.

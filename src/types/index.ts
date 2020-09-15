@@ -9,3 +9,5 @@ export interface CurrencyPair {
 export interface CurrencyRatesPair {
     [key: string]: number
 }
+
+export type Side = 'source' |  'target'
